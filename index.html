@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio — Build with AI</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0a0f1c">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0a0f1c;
+      color: #e2e8f0;
+      font-family: system-ui, sans-serif;
+      padding: 24px;
+      text-align: center;
+    }
+    .setup {
+      max-width: 520px;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+    p {
+      color: #7b8ba8;
+      line-height: 1.7;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+    code {
+      background: rgba(255,255,255,0.08);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: #4f8fff;
+    }
+    .steps {
+      text-align: left;
+      margin-top: 24px;
+      padding: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+    }
+    .steps li {
+      color: #7b8ba8;
+      margin-bottom: 10px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="setup">
+    <h1>🚀 You're all set!</h1>
+    <p>This is your starter repo for the <strong>Build with AI</strong> workshop.</p>
+    <p>Replace this file with the portfolio you build using <strong>Google Stitch</strong> &amp; <strong>Antigravity IDE</strong>.</p>
+    <ol class="steps">
+      <li>Generate your portfolio using <strong>Stitch</strong></li>
+      <li>Customize it in <strong>Antigravity IDE</strong></li>
+      <li>Replace this <code>index.html</code> with your generated code</li>
+      <li>Add your assets (photo, screenshots) to <code>/assets</code></li>
+      <li>Push to GitHub and enable <strong>GitHub Pages</strong></li>
+    </ol>
+  </div>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>
