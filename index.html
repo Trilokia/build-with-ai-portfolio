@@ -1,78 +1,1274 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio — Build with AI</title>
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0a0f1c">
+  <meta charset="utf-8" />
+  <title>Abhinandan — Android Developer | 10M+ Downloads</title>
+  <meta name="description"
+    content="Abhinandan Trilokia – Android developer with 10M+ downloads on Google Play. Creator of PGT, FMW, Preference Manager and more." />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tertiary": "#e7e2ff", "surface-variant": "#262626", "on-secondary-container": "#c1bec1",
+            "on-error-container": "#ff9993", "primary-fixed-dim": "#d4d4d4", "on-error": "#490106",
+            "on-surface-variant": "#ababab", "background": "#0e0e0e", "on-tertiary": "#53506c",
+            "surface-tint": "#c6c6c7", "tertiary-fixed-dim": "#cac6e6", "primary-container": "#454747",
+            "tertiary-dim": "#cac6e6", "primary": "#c6c6c7", "on-secondary-fixed-variant": "#5c5b5d",
+            "inverse-on-surface": "#555555", "secondary-dim": "#9f9da0", "error": "#ee7d77",
+            "surface": "#0e0e0e", "on-tertiary-fixed": "#37354f", "inverse-primary": "#5e5f60",
+            "tertiary-container": "#d8d3f4", "surface-container-lowest": "#000000",
+            "on-background": "#e5e5e5", "secondary-container": "#3b3b3d",
+            "inverse-surface": "#f9f9f9", "on-tertiary-container": "#4a4863",
+            "primary-fixed": "#e2e2e2", "surface-container-low": "#131313",
+            "secondary-fixed": "#e4e2e4", "secondary-fixed-dim": "#d6d3d6",
+            "on-secondary": "#202022", "primary-dim": "#b8b9b9", "secondary": "#9f9da0",
+            "on-surface": "#e5e5e5", "on-primary-container": "#d0d0d0",
+            "outline-variant": "#484848", "on-primary-fixed": "#3e4040",
+            "on-primary": "#3f4041", "tertiary-fixed": "#d8d3f4",
+            "surface-container-highest": "#262626", "on-primary-fixed-variant": "#5a5c5c",
+            "surface-container-high": "#1f1f1f", "on-tertiary-fixed-variant": "#54516d",
+            "error-container": "#7f2927", "error-dim": "#bb5551",
+            "surface-container": "#191919", "outline": "#757575",
+            "surface-bright": "#2c2c2c", "on-secondary-fixed": "#3f3f41", "surface-dim": "#0e0e0e"
+          },
+          fontFamily: {
+            "headline": ["Inter"], "body": ["Inter"], "label": ["Inter"]
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
     body {
-      min-height: 100vh;
+      background-color: #0e0e0e;
+      color: #e5e5e5;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    .cinematic-shadow {
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .text-reveal {
+      background: linear-gradient(to right, #e5e5e5 0%, #656565 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    /* ─── Scroll Reveal Animations ── */
+    .sr {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 0.9s cubic-bezier(.16, 1, .3, 1), transform 0.9s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .sr.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sr-left {
+      opacity: 0;
+      transform: translateX(-80px);
+      transition: opacity 0.9s cubic-bezier(.16, 1, .3, 1), transform 0.9s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .sr-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .sr-right {
+      opacity: 0;
+      transform: translateX(80px);
+      transition: opacity 0.9s cubic-bezier(.16, 1, .3, 1), transform 0.9s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .sr-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .sr-scale {
+      opacity: 0;
+      transform: scale(0.85);
+      transition: opacity 0.9s cubic-bezier(.16, 1, .3, 1), transform 0.9s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .sr-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* stagger children */
+    .sr-stagger>* {
+      transition-delay: calc(var(--i, 0) * 120ms);
+    }
+
+    /* ─── Mouse-Following Background Particles ── */
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ─── Nav active link underline ── */
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      height: 2px;
+      width: 0;
+      background: #c6c6c7;
+      transition: width .35s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .nav-link.active::after,
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* ─── App Cards ── */
+    .app-card {
+      position: relative;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      background: #191919;
+      border: 1px solid rgba(72, 72, 72, .2);
+      transition: transform .5s cubic-bezier(.16, 1, .3, 1), box-shadow .5s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .app-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, .65);
+    }
+
+    .app-card .card-img {
+      height: 380px;
+      width: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) brightness(.85) contrast(1.1);
+      transition: transform .7s cubic-bezier(.16, 1, .3, 1), filter .6s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .app-card:hover .card-img {
+      transform: scale(1.08);
+      filter: grayscale(0%) brightness(1) contrast(1);
+    }
+
+    .app-card .card-body {
+      padding: 1.75rem;
+    }
+
+    .app-card .tag {
+      transition: background .4s ease, color .4s ease;
+    }
+
+    /* ─── AI Resume Builder Modal ── */
+    #ai-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, .85);
+      backdrop-filter: blur(12px);
+      display: none;
+      place-items: center;
+      opacity: 0;
+      transition: opacity .4s ease;
+    }
+
+    #ai-overlay.show {
+      display: grid;
+      opacity: 1;
+    }
+
+    #ai-container {
+      background: #111;
+      border-radius: 1.5rem;
+      padding: 2rem 2.5rem;
+      border: 1px solid #333;
+      box-shadow: 0 40px 100px rgba(0, 0, 0, .8);
+      position: relative;
+      width: 90vw;
+      max-width: 560px;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    #ai-container::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    #ai-container::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 4px;
+    }
+
+    .ai-close {
+      position: absolute;
+      top: .75rem;
+      right: .75rem;
+      background: #222;
+      border: 1px solid #444;
+      color: #e5e5e5;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #0a0f1c;
-      color: #e2e8f0;
-      font-family: system-ui, sans-serif;
-      padding: 24px;
-      text-align: center;
+      cursor: pointer;
+      transition: background .2s;
+      font-size: 18px;
+      z-index: 2;
     }
-    .setup {
-      max-width: 520px;
+
+    .ai-close:hover {
+      background: #333;
     }
-    h1 {
-      font-size: 28px;
-      margin-bottom: 16px;
+
+    #ai-input {
+      width: 100%;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: .75rem;
+      padding: .85rem 1.25rem;
+      color: #e5e5e5;
+      font-family: Inter, sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color .3s;
     }
-    p {
-      color: #7b8ba8;
+
+    #ai-input:focus {
+      border-color: #555;
+    }
+
+    #ai-generate-btn {
+      width: 100%;
+      padding: .85rem;
+      border-radius: .75rem;
+      border: none;
+      background: linear-gradient(135deg, #c6c6c7, #454747);
+      color: #0e0e0e;
+      font-family: Inter, sans-serif;
+      font-weight: 800;
+      font-size: .95rem;
+      letter-spacing: .05em;
+      cursor: pointer;
+      transition: opacity .3s, transform .2s;
+    }
+
+    #ai-generate-btn:hover {
+      opacity: .9;
+    }
+
+    #ai-generate-btn:active {
+      transform: scale(.97);
+    }
+
+    #ai-generate-btn:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+    }
+
+    #ai-result {
+      background: #0a0a0a;
+      border: 1px solid #222;
+      border-radius: .75rem;
+      padding: 1.5rem;
+      font-family: Inter, sans-serif;
+      font-size: .875rem;
       line-height: 1.7;
-      margin-bottom: 12px;
-      font-size: 15px;
+      color: #ccc;
+      white-space: pre-wrap;
+      word-wrap: break-word;
     }
-    code {
-      background: rgba(255,255,255,0.08);
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 13px;
-      color: #4f8fff;
+
+    #ai-result h3 {
+      color: #e5e5e5;
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-bottom: .5rem;
     }
-    .steps {
-      text-align: left;
-      margin-top: 24px;
-      padding: 20px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px;
+
+    #ai-result .section-title {
+      color: #888;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-size: .75rem;
+      margin-top: 1.25rem;
+      margin-bottom: .35rem;
+      display: block;
     }
-    .steps li {
-      color: #7b8ba8;
-      margin-bottom: 10px;
-      font-size: 14px;
-      line-height: 1.6;
+
+    @keyframes aiPulse {
+
+      0%,
+      100% {
+        opacity: .3;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .ai-loading {
+      animation: aiPulse 1.2s ease-in-out infinite;
+      color: #666;
+    }
+
+    /* ─── Scrollbar ── */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* ─── Hero title animation ── */
+    @keyframes heroFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-anim {
+      animation: heroFadeUp 1.2s cubic-bezier(.16, 1, .3, 1) forwards;
+    }
+
+    .hero-anim-delay-1 {
+      animation-delay: .2s;
+      opacity: 0;
+    }
+
+    .hero-anim-delay-2 {
+      animation-delay: .5s;
+      opacity: 0;
+    }
+
+    .hero-anim-delay-3 {
+      animation-delay: .8s;
+      opacity: 0;
+    }
+
+    /* ─── Google Play badge ── */
+    .gplay-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .85rem 1.5rem;
+      background: linear-gradient(135deg, #1a1a1a, #262626);
+      border: 1px solid #3a3a3a;
+      border-radius: 1rem;
+      transition: all .4s cubic-bezier(.16, 1, .3, 1);
+      text-decoration: none;
+    }
+
+    .gplay-badge:hover {
+      transform: translateY(-3px);
+      border-color: #555;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, .5);
     }
   </style>
 </head>
-<body>
-  <div class="setup">
-    <h1>🚀 You're all set!</h1>
-    <p>This is your starter repo for the <strong>Build with AI</strong> workshop.</p>
-    <p>Replace this file with the portfolio you build using <strong>Google Stitch</strong> &amp; <strong>Antigravity IDE</strong>.</p>
-    <ol class="steps">
-      <li>Generate your portfolio using <strong>Stitch</strong></li>
-      <li>Customize it in <strong>Antigravity IDE</strong></li>
-      <li>Replace this <code>index.html</code> with your generated code</li>
-      <li>Add your assets (photo, screenshots) to <code>/assets</code></li>
-      <li>Push to GitHub and enable <strong>GitHub Pages</strong></li>
-    </ol>
+
+<body class="font-body selection:bg-primary-container selection:text-on-primary-container">
+
+  <!-- Background Particles Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- TopNavBar -->
+  <nav id="main-nav"
+    class="fixed top-0 w-full z-50 bg-[#191919]/70 backdrop-blur-xl border-b border-[#484848]/15 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex justify-between items-center px-8 py-4 max-w-full">
+    <div class="text-xl font-black text-[#e5e5e5] tracking-tighter uppercase">Abhinandan</div>
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-12">
+      <a class="font-['Inter'] tracking-[-0.02em] font-bold antialiased nav-link active text-[#e5e5e5]"
+        href="#spark">The Spark</a>
+      <a class="font-['Inter'] tracking-[-0.02em] font-bold antialiased nav-link text-[#ababab] hover:text-[#e5e5e5] transition-colors duration-400"
+        href="#build">The Build</a>
+      <a class="font-['Inter'] tracking-[-0.02em] font-bold antialiased nav-link text-[#ababab] hover:text-[#e5e5e5] transition-colors duration-400"
+        href="#work">The Work</a>
+      <a class="font-['Inter'] tracking-[-0.02em] font-bold antialiased nav-link text-[#ababab] hover:text-[#e5e5e5] transition-colors duration-400"
+        href="#community">The Community</a>
+    </div>
+    <div class="flex items-center gap-6">
+      <button id="ai-trigger"
+        class="material-symbols-outlined text-[#c6c6c7] hover:opacity-80 transition-opacity cursor-pointer"
+        title="AI Resume Builder">magic_button</button>
+      <a href="mailto:hi@imtrilokia.dev"
+        class="bg-gradient-to-r from-primary to-primary-container text-on-primary px-6 py-2 rounded-full font-label font-bold text-sm tracking-widest hover:opacity-90 transition-all active:scale-95">Contact
+        Me</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Section 1: Hero (Opening Scene) -->
+    <section
+      class="min-h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden bg-surface-container-lowest">
+      <div class="absolute inset-0 opacity-20">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full blur-[160px]"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary-container rounded-full blur-[160px]"></div>
+      </div>
+      <div class="relative z-10 text-center max-w-5xl">
+        <h1 class="text-5xl md:text-8xl font-black tracking-tighter mb-4 text-on-surface leading-[0.9] hero-anim">
+          Hi, I'm Abhinandan.
+        </h1>
+        <h2
+          class="text-4xl md:text-7xl font-black tracking-tighter mb-8 leading-[0.95] text-reveal hero-anim hero-anim-delay-1">
+          I build Android apps used by millions.
+        </h2>
+        <p
+          class="text-xl md:text-2xl font-light tracking-wide text-on-surface-variant mb-12 hero-anim hero-anim-delay-2">
+          10M+ downloads on Google Play
+        </p>
+        <!-- Social Links -->
+        <div class="flex justify-center gap-6 hero-anim hero-anim-delay-3 mb-12">
+          <a href="https://github.com/Trilokia" target="_blank" rel="noopener"
+            class="flex items-center gap-2 px-5 py-2.5 rounded-full border border-outline-variant/30 text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all duration-300 hover:-translate-y-0.5">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12 24 5.37 18.63 0 12 0z" />
+            </svg>
+            <span class="text-sm font-bold">GitHub</span>
+          </a>
+          <a href="https://www.linkedin.com/in/abhinandantrilokia/" target="_blank" rel="noopener"
+            class="flex items-center gap-2 px-5 py-2.5 rounded-full border border-outline-variant/30 text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all duration-300 hover:-translate-y-0.5">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+            </svg>
+            <span class="text-sm font-bold">LinkedIn</span>
+          </a>
+          <a href="mailto:hi@imtrilokia.dev"
+            class="flex items-center gap-2 px-5 py-2.5 rounded-full border border-outline-variant/30 text-on-surface-variant hover:text-on-surface hover:border-primary/50 transition-all duration-300 hover:-translate-y-0.5">
+            <span class="material-symbols-outlined text-[20px]">mail</span>
+            <span class="text-sm font-bold">Email</span>
+          </a>
+        </div>
+        <div class="flex flex-col items-center gap-4 animate-bounce opacity-60">
+          <span class="material-symbols-outlined text-4xl">expand_more</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: The Spark -->
+    <section class="min-h-[819px] flex flex-col items-center justify-center bg-surface px-8 py-24" id="spark">
+      <div class="max-w-3xl text-center space-y-12">
+        <h2 class="text-on-surface-variant font-label tracking-[0.2em] uppercase text-sm sr">The Spark</h2>
+        <h3 class="text-4xl md:text-6xl font-bold tracking-tight text-on-surface sr" style="transition-delay:.12s">It
+          started with curiosity.</h3>
+        <p class="text-xl md:text-2xl text-on-surface-variant font-light leading-relaxed sr"
+          style="transition-delay:.24s">
+          A passion for technology turned into building real-world mobile experiences that simplify lives and connect
+          users globally.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 3: The Build -->
+    <section class="min-h-screen bg-surface-container-low px-8 py-24 flex items-center" id="build">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+        <div class="space-y-8 sr-left">
+          <h2 class="text-on-surface-variant font-label tracking-[0.2em] uppercase text-sm">The Build</h2>
+          <h3 class="text-5xl md:text-7xl font-bold tracking-tighter text-on-surface leading-tight">
+            Learning.<br />Experimenting.<br />Building.
+          </h3>
+          <p class="text-xl text-on-surface-variant max-w-md">
+            From small ideas to scalable Android apps, utilizing modern architectures like Jetpack Compose and Kotlin
+            Multiplatform.
+          </p>
+        </div>
+        <div class="relative group sr-right">
+          <div
+            class="aspect-[9/19] w-64 md:w-80 mx-auto bg-surface-container-highest rounded-[3rem] p-4 cinematic-shadow border border-outline-variant/20 overflow-hidden transform group-hover:scale-105 transition-transform duration-700">
+            <div
+              class="w-full h-full bg-surface-container rounded-[2.5rem] flex flex-col p-6 space-y-6 overflow-hidden">
+              <div class="w-full h-32 bg-surface-bright rounded-2xl animate-pulse"></div>
+              <div class="space-y-3">
+                <div class="h-4 w-3/4 bg-surface-variant rounded-full"></div>
+                <div class="h-4 w-1/2 bg-surface-variant rounded-full"></div>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="h-24 bg-surface-variant rounded-xl"></div>
+                <div class="h-24 bg-surface-variant rounded-xl"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: The Impact -->
+    <section
+      class="min-h-[614px] bg-surface-container-lowest flex items-center justify-center text-center px-8 relative">
+      <div
+        class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-surface-container-low to-transparent opacity-50">
+      </div>
+      <div class="z-10 sr-scale">
+        <span class="text-primary text-8xl md:text-[12rem] font-black tracking-tighter block mb-4">10M+</span>
+        <h4 class="text-2xl md:text-4xl font-bold text-on-surface uppercase tracking-[0.1em]">Downloads</h4>
+        <p class="text-on-surface-variant mt-8 max-w-lg mx-auto text-lg">
+          Apps built to solve real problems. Used by people at scale across the globe.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 5: The Work (App Showcase) -->
+    <section class="bg-surface py-32 overflow-hidden" id="work">
+      <div class="px-8 mb-16 max-w-7xl mx-auto">
+        <h2 class="text-on-surface-variant font-label tracking-[0.2em] uppercase text-sm mb-4 sr">The Work</h2>
+        <h3 class="text-4xl md:text-6xl font-bold tracking-tight text-on-surface sr" style="transition-delay:.12s">
+          Selected Projects</h3>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 sr-stagger">
+        <!-- PGT -->
+        <div class="app-card sr" style="--i:0" data-accent="#38bdf8">
+          <div class="overflow-hidden">
+            <img class="card-img" src="assets/pgt_performance.png"
+              alt="PGT — Performance optimization abstract art" />
+          </div>
+          <div class="card-body">
+            <h5 class="text-2xl font-bold text-on-surface mb-3">PGT</h5>
+            <p class="text-on-surface-variant text-sm leading-relaxed">
+              Optimize FPS & boost gaming performance with Potato Graphics, Simple Shaders and more.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-5">
+              <span
+                class="tag px-3 py-1 bg-white/5 text-[#888] rounded-full text-xs font-bold uppercase tracking-widest">Gaming</span>
+              <span
+                class="tag px-3 py-1 bg-white/5 text-[#888] rounded-full text-xs font-bold uppercase tracking-widest">Performance</span>
+              <span
+                class="tag px-3 py-1 bg-white/5 text-[#888] rounded-full text-xs font-bold uppercase tracking-widest">FPS
+                Boost</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FMW -->
+        <div class="app-card sr" style="--i:1" data-accent="#f59e0b">
+          <div class="overflow-hidden">
+            <img class="card-img" src="assets/fmw_social_impact.png" alt="FMW — Social impact abstract art" />
+          </div>
+          <div class="card-body">
+            <h5 class="text-2xl font-bold text-on-surface mb-3">FMW: Free My Way</h5>
+            <p class="text-on-surface-variant text-sm leading-relaxed">
+              Google Play social impact app built during the Android Nano Degree coursework.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-5">
+              <span
+                class="tag px-3 py-1 bg-white/5 text-[#888] rounded-full text-xs font-bold uppercase tracking-widest">Social
+                Impact</span>
+              <span
+                class="tag px-3 py-1 bg-white/5 text-[#888] rounded-full text-xs font-bold uppercase tracking-widest">Nano
+                Degree</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preference Manager -->
+        <div class="app-card sr" style="--i:2" data-accent="#4ade80">
+          <div class="overflow-hidden">
+            <img class="card-img" src="assets/pref_manager_debug.png"
+              alt="Preference Manager — Android debugging abstract art" />
+          </div>
+          <div class="card-body">
+            <h5 class="text-2xl font-bold text-on-surface mb-3">Preference Manager</h5>
+            <p class="text-on-surface-variant text-sm leading-relaxed">
+              Advanced tool for managing & debugging Android shared preferences.
+            </p>
+            <div class="flex flex-wrap gap-2 mt-5">
+              <span
+                class="tag px-3 py-1 bg-white/5 text-[#888] rounded-full text-xs font-bold uppercase tracking-widest">Developer
+                Tool</span>
+              <span
+                class="tag px-3 py-1 bg-white/5 text-[#888] rounded-full text-xs font-bold uppercase tracking-widest">Debugging</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- More on Google Play -->
+      <div class="max-w-7xl mx-auto px-8 mt-16 flex justify-center sr" style="transition-delay:.5s">
+        <a href="https://play.google.com/store/apps/dev?id=4898227705286580329" target="_blank" rel="noopener"
+          class="gplay-badge">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92z" fill="#4285F4" />
+            <path d="M17.219 8.386l-3.427 3.614 3.427 3.614 3.87-2.174a1 1 0 000-1.88l-3.87-2.174z" fill="#FBBC04" />
+            <path d="M3.609 1.814L13.792 12l3.427-3.614L5.582.942a1.07 1.07 0 00-1.015.024l-.958.848z" fill="#34A853" />
+            <path d="M13.792 12L3.609 22.186l.958.848a1.07 1.07 0 001.015.024L17.22 15.614 13.792 12z" fill="#EA4335" />
+          </svg>
+          <div>
+            <span class="text-xs text-[#888] font-bold uppercase tracking-widest block">More Apps on</span>
+            <span class="text-lg font-black text-on-surface">Google Play</span>
+          </div>
+          <span class="material-symbols-outlined text-xl text-[#888]">arrow_forward</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 6: The Mindset -->
+    <section class="bg-surface-container py-32 px-8">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-24 items-center">
+        <div class="flex-1 space-y-8 sr-left">
+          <h2 class="text-on-surface-variant font-label tracking-[0.2em] uppercase text-sm">The Mindset</h2>
+          <h3 class="text-4xl md:text-6xl font-bold tracking-tight text-on-surface">I don't just build apps. I explore
+            what's next.</h3>
+        </div>
+        <div class="flex-1 grid grid-cols-1 gap-6 w-full sr-stagger">
+          <div
+            class="bg-surface-container-low p-8 rounded-xl flex items-center gap-6 group hover:bg-surface-bright transition-colors border border-outline-variant/10 sr"
+            style="--i:0">
+            <span class="material-symbols-outlined text-4xl text-primary">psychology</span>
+            <div>
+              <h6 class="text-xl font-bold text-on-surface">AI-First Logic</h6>
+              <p class="text-on-surface-variant">Integrating ML models for smarter user experiences.</p>
+            </div>
+          </div>
+          <div
+            class="bg-surface-container-low p-8 rounded-xl flex items-center gap-6 group hover:bg-surface-bright transition-colors border border-outline-variant/10 sr"
+            style="--i:1">
+            <span class="material-symbols-outlined text-4xl text-primary">architecture</span>
+            <div>
+              <h6 class="text-xl font-bold text-on-surface">Modular Scaling</h6>
+              <p class="text-on-surface-variant">Building architectures that thrive under heavy load.</p>
+            </div>
+          </div>
+          <div
+            class="bg-surface-container-low p-8 rounded-xl flex items-center gap-6 group hover:bg-surface-bright transition-colors border border-outline-variant/10 sr"
+            style="--i:2">
+            <span class="material-symbols-outlined text-4xl text-primary">speed</span>
+            <div>
+              <h6 class="text-xl font-bold text-on-surface">Performance Tuning</h6>
+              <p class="text-on-surface-variant">Optimizing for sub-second app launches and smooth frames.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: The Community -->
+    <section class="bg-surface-container-lowest py-32 px-8 relative overflow-hidden" id="community">
+      <div class="max-w-5xl mx-auto text-center relative z-10">
+        <h2 class="text-on-surface-variant font-label tracking-[0.2em] uppercase text-sm mb-6 sr">The Community</h2>
+        <h3
+          class="text-5xl md:text-7xl font-black tracking-tighter text-on-surface mb-12 italic underline decoration-primary/30 sr"
+          style="transition-delay:.12s">Growing together.</h3>
+        <div
+          class="bg-surface-container/50 backdrop-blur-md p-12 rounded-[2rem] border border-outline-variant/20 inline-block sr-scale"
+          style="transition-delay:.24s">
+          <div class="flex flex-col md:flex-row items-center gap-12">
+            <div class="text-left space-y-4">
+              <h4 class="text-3xl font-bold text-on-surface">Organizer at <a href="https://gdg.community.dev/gdg-jammu/"
+                  target="_blank" rel="noopener"
+                  class="underline decoration-primary/40 hover:decoration-primary transition-all">GDG Jammu</a></h4>
+              <p class="text-on-surface-variant max-w-md text-lg">Leading workshops, hosting hackathons, and fostering
+                the next generation of mobile developers in the region.</p>
+              <div class="flex flex-wrap gap-4 pt-4">
+                <span
+                  class="px-4 py-2 bg-primary/10 text-primary rounded-full text-xs font-bold uppercase tracking-widest">Leadership</span>
+                <span
+                  class="px-4 py-2 bg-primary/10 text-primary rounded-full text-xs font-bold uppercase tracking-widest">Mentorship</span>
+                <a href="https://gdg.community.dev/gdg-jammu/" target="_blank" rel="noopener"
+                  class="px-4 py-2 bg-primary/10 text-primary rounded-full text-xs font-bold uppercase tracking-widest hover:bg-primary/20 transition-colors flex items-center gap-1">
+                  <span class="material-symbols-outlined text-sm">open_in_new</span> GDG Jammu
+                </a>
+              </div>
+            </div>
+            <div
+              class="w-32 h-32 rounded-full border-4 border-primary/20 p-2 overflow-hidden flex items-center justify-center">
+              <span class="material-symbols-outlined text-6xl text-primary"
+                style="font-variation-settings: 'FILL' 1;">groups</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: The Human Side -->
+    <section class="bg-on-surface text-surface py-32 px-8 overflow-hidden">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+        <div class="order-2 lg:order-1 relative sr-left">
+          <div class="aspect-square bg-surface rounded-2xl overflow-hidden cinematic-shadow">
+            <img class="w-full h-full object-cover opacity-80 grayscale" alt="Cricket — beyond the screen"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN7mGXY4AKwQKU9Kb6cDtnYmQCmdOe5GdTS4am5pl7CM9EgtP2ILugjOdMQGLhUKgHFG2ykj5e_vcTPCA9_YJ94nwxApFQaYNQP6cjzrldSQdkVKgW-F9tlbBNjCNboxN_RNCav9IY3CYabtCecMrOBzk9c5yxAMZG0WDD557Jc_w0l6czntWUw2mB2Fu-8Stxo9s4cs2mwCDeUxECbg2-VdN6yFiMtPHZA8EN4q3lyklVTDCG2HImVg_OdwDH60cLqA_iftF-CU_R" />
+          </div>
+        </div>
+        <div class="order-1 lg:order-2 space-y-8 sr-right">
+          <h2 class="text-surface/60 font-label tracking-[0.2em] uppercase text-sm">The Human Side</h2>
+          <h3 class="text-5xl md:text-7xl font-bold tracking-tight text-surface leading-tight">Beyond the screen.</h3>
+          <p class="text-2xl text-surface/80 font-light italic">"Weekends are for cricket. It's where strategy meets
+            focus away from the keyboard."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 9: CTA (Final Scene) -->
+    <section
+      class="min-h-[819px] flex flex-col items-center justify-center bg-surface-container-lowest px-8 text-center">
+      <div class="max-w-4xl sr-scale">
+        <h3 class="text-5xl md:text-8xl font-black tracking-tighter text-on-surface mb-12">Let's build something
+          impactful.</h3>
+        <div class="flex flex-wrap justify-center gap-8">
+          <a class="group flex items-center gap-3 text-2xl font-bold text-on-surface hover:text-primary transition-colors"
+            href="mailto:hi@imtrilokia.dev">
+            Get in Touch
+            <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+          </a>
+          <div class="h-8 w-[1px] bg-outline-variant hidden md:block"></div>
+          <a class="group flex items-center gap-3 text-2xl font-bold text-on-surface-variant hover:text-on-surface transition-colors"
+            href="https://github.com/Trilokia" target="_blank" rel="noopener">
+            View GitHub
+          </a>
+          <div class="h-8 w-[1px] bg-outline-variant hidden md:block"></div>
+          <a class="group flex items-center gap-3 text-2xl font-bold text-on-surface-variant hover:text-on-surface transition-colors"
+            href="https://www.linkedin.com/in/abhinandantrilokia/" target="_blank" rel="noopener">
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer
+    class="w-full py-12 px-8 bg-[#000000] border-t border-[#191919] flex flex-col items-center gap-6 relative z-10">
+    <div class="w-full max-w-7xl flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="font-['Inter'] text-sm tracking-wide text-[#ababab]">
+        © 2024 Abhinandan.
+      </div>
+      <div class="flex gap-8">
+        <a class="font-['Inter'] text-sm tracking-wide text-[#454747] hover:text-[#c6c6c7] transition-colors"
+          href="https://github.com/Trilokia" target="_blank" rel="noopener">GitHub</a>
+        <a class="font-['Inter'] text-sm tracking-wide text-[#454747] hover:text-[#c6c6c7] transition-colors"
+          href="https://www.linkedin.com/in/abhinandantrilokia/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="font-['Inter'] text-sm tracking-wide text-[#454747] hover:text-[#c6c6c7] transition-colors"
+          href="https://play.google.com/store/apps/dev?id=4898227705286580329" target="_blank" rel="noopener">Google
+          Play</a>
+        <a class="font-['Inter'] text-sm tracking-wide text-[#454747] hover:text-[#c6c6c7] transition-colors"
+          href="mailto:hi@imtrilokia.dev">Email</a>
+      </div>
+    </div>
+    <div class="w-full max-w-7xl border-t border-[#191919] pt-6 flex justify-center">
+      <p class="font-['Inter'] text-xs tracking-wide text-[#454747]">
+        Powered by <a href="https://buildwithai.gdgjammu.com/" target="_blank" rel="noopener"
+          class="text-[#888] hover:text-[#c6c6c7] transition-colors font-bold">Build with AI</a> — a <a
+          href="https://gdg.community.dev/gdg-jammu/" target="_blank" rel="noopener"
+          class="text-[#888] hover:text-[#c6c6c7] transition-colors font-bold">GDG Jammu</a> initiative.
+      </p>
+    </div>
+  </footer>
+
+  <!-- AI Resume Builder Overlay -->
+  <div id="ai-overlay">
+    <div id="ai-container">
+      <button class="ai-close" id="ai-close">✕</button>
+      <div class="text-center mb-6">
+        <span class="material-symbols-outlined text-4xl text-[#888] mb-2 block"
+          style="font-variation-settings:'FILL' 1">magic_button</span>
+        <h4 class="text-2xl font-black text-on-surface">AI Resume Builder</h4>
+        <p class="text-sm text-[#666] mt-1">Get a tailored resume for Abhinandan — in seconds.</p>
+      </div>
+      <!-- Step 1: Role Input -->
+      <div id="ai-step-input" class="space-y-4">
+        <label class="text-xs font-bold text-[#888] uppercase tracking-widest block">What role are you hiring
+          for?</label>
+        <input id="ai-input" type="text" placeholder="e.g. SDE, Android Developer, Tech Lead..." autocomplete="off" />
+        <button id="ai-generate-btn">Generate Resume</button>
+      </div>
+      <!-- Step 2: Result -->
+      <div id="ai-step-result" class="hidden mt-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold text-[#888] uppercase tracking-widest">Generated Resume</span>
+          <div class="flex items-center gap-3">
+            <button id="ai-pdf-btn"
+              class="text-xs font-bold text-[#555] hover:text-[#e5e5e5] transition-colors flex items-center gap-1 cursor-pointer bg-transparent border-0">
+              <span class="material-symbols-outlined text-sm">picture_as_pdf</span> Save
+            </button>
+            <button id="ai-copy-btn"
+              class="text-xs font-bold text-[#555] hover:text-[#e5e5e5] transition-colors flex items-center gap-1 cursor-pointer bg-transparent border-0">
+              <span class="material-symbols-outlined text-sm">content_copy</span> Copy
+            </button>
+          </div>
+        </div>
+        <div id="ai-result"></div>
+        <div class="flex gap-3 mt-4">
+          <button id="ai-retry-btn"
+            class="flex-1 py-2.5 rounded-lg bg-[#1a1a1a] border border-[#333] text-[#888] font-bold text-sm hover:text-[#e5e5e5] hover:border-[#555] transition-all cursor-pointer">Try
+            another role</button>
+          <button id="ai-download-btn"
+            class="flex-1 py-2.5 rounded-lg bg-gradient-to-r from-[#c6c6c7] to-[#454747] text-[#0e0e0e] font-bold text-sm hover:opacity-90 transition-all cursor-pointer flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-sm">download</span> Download
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js').catch(() => {});
-    }
+      // ─────────────── Scroll Reveal ───────────────
+      (function () {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('visible'); }
+          });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.sr, .sr-left, .sr-right, .sr-scale').forEach(el => io.observe(el));
+      })();
+
+    // ─────────────── Active Nav on Scroll ───────────────
+    (function () {
+      const sections = document.querySelectorAll('section[id]');
+      const links = document.querySelectorAll('.nav-link');
+      window.addEventListener('scroll', () => {
+        let cur = '';
+        sections.forEach(s => {
+          if (window.scrollY >= s.offsetTop - 200) cur = s.id;
+        });
+        links.forEach(l => {
+          l.classList.remove('active', 'text-[#e5e5e5]');
+          l.classList.add('text-[#ababab]');
+          if (l.getAttribute('href') === '#' + cur) {
+            l.classList.add('active', 'text-[#e5e5e5]');
+            l.classList.remove('text-[#ababab]');
+          }
+        });
+      });
+    })();
+
+    // ─────────────── App Card Hover → Colorize Tags ───────────────
+    document.querySelectorAll('.app-card[data-accent]').forEach(card => {
+      const accent = card.dataset.accent;
+      const tags = card.querySelectorAll('.tag');
+      card.addEventListener('mouseenter', () => {
+        tags.forEach(t => { t.style.background = accent + '1a'; t.style.color = accent; });
+      });
+      card.addEventListener('mouseleave', () => {
+        tags.forEach(t => { t.style.background = ''; t.style.color = ''; });
+      });
+    });
+
+    // ─────────────── Mouse-Following Background Particles ───────────────
+    (function () {
+      const canvas = document.getElementById('bg-canvas');
+      const ctx = canvas.getContext('2d');
+      let W, H, mouseX = 0, mouseY = 0;
+      const particles = [];
+      const PARTICLE_COUNT = 70;
+      const CONNECTION_DIST = 150;
+      const MOUSE_RADIUS = 220;
+
+      function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+      resize();
+      window.addEventListener('resize', resize);
+      window.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * W;
+          this.y = Math.random() * H;
+          this.vx = (Math.random() - .5) * .5;
+          this.vy = (Math.random() - .5) * .5;
+          this.r = Math.random() * 2 + 0.5;
+          this.baseAlpha = Math.random() * .25 + .05;
+        }
+        update() {
+          // Gently attract toward mouse
+          const dx = mouseX - this.x;
+          const dy = mouseY - this.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < MOUSE_RADIUS && dist > 0) {
+            const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS * 0.015;
+            this.vx += dx / dist * force;
+            this.vy += dy / dist * force;
+          }
+          // Dampen
+          this.vx *= .995;
+          this.vy *= .995;
+          this.x += this.vx;
+          this.y += this.vy;
+          // Wrap
+          if (this.x < 0) this.x = W;
+          if (this.x > W) this.x = 0;
+          if (this.y < 0) this.y = H;
+          if (this.y > H) this.y = 0;
+        }
+        draw() {
+          const dx = mouseX - this.x;
+          const dy = mouseY - this.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const glow = dist < MOUSE_RADIUS ? (MOUSE_RADIUS - dist) / MOUSE_RADIUS * .6 : 0;
+          const alpha = this.baseAlpha + glow;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.r + glow * 2, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(198,198,199,${alpha})`;
+          ctx.fill();
+        }
+      }
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+      function loop() {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach(p => { p.update(); p.draw(); });
+        // Connect nearby particles that are also near mouse
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            if (d < CONNECTION_DIST) {
+              const midX = (particles[i].x + particles[j].x) / 2;
+              const midY = (particles[i].y + particles[j].y) / 2;
+              const mdx = mouseX - midX;
+              const mdy = mouseY - midY;
+              const md = Math.sqrt(mdx * mdx + mdy * mdy);
+              if (md < MOUSE_RADIUS * 1.5) {
+                const a = (1 - d / CONNECTION_DIST) * .12 * (1 - Math.min(md, MOUSE_RADIUS * 1.5) / (MOUSE_RADIUS * 1.5));
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.strokeStyle = `rgba(198,198,199,${a})`;
+                ctx.lineWidth = .6;
+                ctx.stroke();
+              }
+            }
+          }
+        }
+        requestAnimationFrame(loop);
+      }
+      loop();
+    })();
+
+    // ─────────────── AI Resume Builder ───────────────
+    (function () {
+      const trigger = document.getElementById('ai-trigger');
+      const overlay = document.getElementById('ai-overlay');
+      const closeBtn = document.getElementById('ai-close');
+      const input = document.getElementById('ai-input');
+      const genBtn = document.getElementById('ai-generate-btn');
+      const stepInput = document.getElementById('ai-step-input');
+      const stepResult = document.getElementById('ai-step-result');
+      const resultDiv = document.getElementById('ai-result');
+      const copyBtn = document.getElementById('ai-copy-btn');
+      const pdfBtn = document.getElementById('ai-pdf-btn');
+      const downloadBtn = document.getElementById('ai-download-btn');
+      const retryBtn = document.getElementById('ai-retry-btn');
+      let lastRole = '';
+
+      // Abhinandan's real profile data
+      const PROFILE = {
+        name: 'Abhinandan Trilokia',
+        email: 'hi@imtrilokia.dev',
+        github: 'github.com/Trilokia',
+        linkedin: 'linkedin.com/in/abhinandantrilokia',
+        playstore: 'play.google.com/store/apps/dev?id=4898227705286580329',
+        summary: 'Android developer with 10M+ downloads on Google Play Store. Experienced in building high-performance mobile applications, gaming utilities, and developer tools. Active community organizer at GDG Jammu.',
+        skills: {
+          languages: ['Kotlin', 'Java', 'Python', 'C++', 'JavaScript'],
+          android: ['Jetpack Compose', 'Kotlin Multiplatform', 'MVVM', 'Clean Architecture', 'Room', 'Retrofit', 'Dagger/Hilt', 'Coroutines', 'Flow'],
+          tools: ['Android Studio', 'Git', 'Firebase', 'CI/CD', 'Gradle', 'Play Console', 'ProGuard/R8'],
+          other: ['Performance Optimization', 'ML Integration', 'UI/UX Design', 'REST APIs', 'GraphQL']
+        },
+        experience: [
+          {
+            title: 'Independent Android Developer',
+            period: '2018 – Present',
+            highlights: [
+              'Built and published 10+ apps on Google Play with cumulative 10M+ downloads',
+              'PGT: Gaming performance optimizer — 5M+ downloads, featured on Play Store',
+              'Preference Manager: Developer debugging tool adopted by thousands of developers',
+              'Achieved 4.2+ average rating across all published applications',
+              'Implemented Kotlin Multiplatform for shared business logic across platforms'
+            ]
+          },
+          {
+            title: 'GDG Jammu — Organizer',
+            period: '2022 – Present',
+            highlights: [
+              'Led 20+ technical workshops and hackathons for 500+ developers',
+              'Mentored aspiring Android developers through hands-on training sessions',
+              'Organized "Build with AI" workshop series promoting ML integration in mobile apps'
+            ]
+          }
+        ],
+        projects: [
+          { name: 'PGT (Pro Gaming Tool)', desc: 'Launcher utility for graphics optimization, FPS boost, Potato Graphics mode. 5M+ downloads.' },
+          { name: 'FMW: Free My Way', desc: 'Social impact app built during Android Nano Degree, inspired by Google Play\'s social impact initiative.' },
+          { name: 'Preference Manager', desc: 'Advanced SharedPreferences debugging tool for Android developers. Real-time editing & monitoring.' }
+        ],
+        education: 'B.Tech in Computer Science'
+      };
+
+      function generateResume(role) {
+        const r = role.trim();
+        const rl = r.toLowerCase();
+
+        // Tailor the objective/summary based on role
+        let objective = '';
+        let relevantSkills = [];
+        let highlights = [];
+
+        if (rl.includes('android') || rl.includes('mobile')) {
+          objective = `Results-driven Android developer with 10M+ downloads seeking a ${r} role. Expert in Kotlin, Jetpack Compose, and building high-performance mobile apps at scale.`;
+          relevantSkills = [...PROFILE.skills.android, ...PROFILE.skills.languages.slice(0, 2), ...PROFILE.skills.tools.slice(0, 4)];
+          highlights = ['Built apps reaching 10M+ global downloads', 'Expert in Jetpack Compose & Kotlin Multiplatform', 'Deep experience with performance optimization & ProGuard/R8'];
+        } else if (rl.includes('sde') || rl.includes('software') || rl.includes('backend') || rl.includes('full')) {
+          objective = `Software engineer with proven track record of building scalable applications used by millions. Seeking a ${r} position to leverage expertise in clean architecture, performance engineering, and cross-platform development.`;
+          relevantSkills = [...PROFILE.skills.languages, 'Clean Architecture', 'MVVM', 'REST APIs', 'GraphQL', 'CI/CD', 'Git', 'Firebase'];
+          highlights = ['Architected apps serving 10M+ users with 99.5%+ crash-free rate', 'Implemented CI/CD pipelines for automated testing & deployment', 'Proficient in modular, scalable system design'];
+        } else if (rl.includes('lead') || rl.includes('manager') || rl.includes('senior')) {
+          objective = `Experienced tech lead and community organizer with 10M+ app downloads, seeking a ${r} role. Combines deep technical expertise with mentorship and team-building skills through GDG Jammu leadership.`;
+          relevantSkills = ['Team Leadership', 'Mentorship', 'Architecture Design', ...PROFILE.skills.android.slice(0, 4), ...PROFILE.skills.languages.slice(0, 3), 'Code Review', 'Agile/Scrum'];
+          highlights = ['Led 20+ workshops mentoring 500+ developers at GDG Jammu', 'Managed full product lifecycle from ideation to 10M+ downloads', 'Expert in architectural decisions & technical roadmap planning'];
+        } else if (rl.includes('ml') || rl.includes('ai') || rl.includes('machine')) {
+          objective = `Mobile developer with ML integration expertise seeking a ${r} role. Experienced in deploying on-device ML models and AI-first mobile experiences across apps with 10M+ downloads.`;
+          relevantSkills = ['ML Integration', 'TensorFlow Lite', 'Python', ...PROFILE.skills.android.slice(0, 3), 'On-device Inference', 'Data Pipeline', 'Firebase ML'];
+          highlights = ['Integrated ML models for intelligent user experiences in production apps', 'Organized "Build with AI" workshop series at GDG Jammu', 'Experience with on-device and cloud-based ML pipelines'];
+        } else {
+          objective = `Versatile developer with 10M+ app downloads on Google Play, seeking a ${r} role. Brings a strong foundation in software engineering, mobile development, and community leadership.`;
+          relevantSkills = [...PROFILE.skills.languages, ...PROFILE.skills.android.slice(0, 4), ...PROFILE.skills.other.slice(0, 3)];
+          highlights = ['10M+ cumulative downloads across published applications', 'Full-cycle product development from concept to scale', 'Active tech community organizer at GDG Jammu'];
+        }
+
+        // Build the formatted resume
+        let resume = '';
+        resume += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+        resume += `${PROFILE.name.toUpperCase()}\n`;
+        resume += `${PROFILE.email}  •  ${PROFILE.github}\n`;
+        resume += `${PROFILE.linkedin}\n`;
+        resume += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+
+        resume += `▎ OBJECTIVE\n`;
+        resume += `${objective}\n\n`;
+
+        resume += `▎ KEY HIGHLIGHTS\n`;
+        highlights.forEach(h => resume += `  ✦  ${h}\n`);
+        resume += `\n`;
+
+        resume += `▎ TECHNICAL SKILLS\n`;
+        resume += `  ${relevantSkills.join('  •  ')}\n\n`;
+
+        resume += `▎ EXPERIENCE\n`;
+        PROFILE.experience.forEach(exp => {
+          resume += `\n  ${exp.title}  |  ${exp.period}\n`;
+          exp.highlights.forEach(h => resume += `    →  ${h}\n`);
+        });
+        resume += `\n`;
+
+        resume += `▎ NOTABLE PROJECTS\n`;
+        PROFILE.projects.forEach(p => {
+          resume += `  ◆  ${p.name}\n      ${p.desc}\n`;
+        });
+        resume += `\n`;
+
+        resume += `▎ EDUCATION\n`;
+        resume += `  ${PROFILE.education}\n\n`;
+
+        resume += `▎ LINKS\n`;
+        resume += `  Google Play: ${PROFILE.playstore}\n`;
+        resume += `  GitHub: ${PROFILE.github}\n`;
+        resume += `  LinkedIn: ${PROFILE.linkedin}\n`;
+        resume += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+
+        return resume;
+      }
+
+      function generatePDF(role) {
+        const resume = generateResume(role);
+        const lines = resume.split('\n');
+
+        // Create a hidden canvas for PDF rendering
+        const c = document.createElement('canvas');
+        const W = 595, H = 842; // A4 at 72 DPI
+        c.width = W; c.height = H;
+        const cx = c.getContext('2d');
+
+        // Background
+        cx.fillStyle = '#0e0e0e';
+        cx.fillRect(0, 0, W, H);
+
+        // Render text
+        let y = 50;
+        const margin = 45;
+        const maxW = W - margin * 2;
+
+        lines.forEach(line => {
+          if (y > H - 40) return; // stop if page is full
+
+          // Section headers
+          if (line.startsWith('▎')) {
+            y += 6;
+            cx.fillStyle = '#c6c6c7';
+            cx.font = 'bold 11px Inter, Helvetica, Arial, sans-serif';
+            cx.fillText(line, margin, y);
+            y += 18;
+          } else if (line.includes('━')) {
+            // Horizontal rule
+            cx.strokeStyle = '#333';
+            cx.lineWidth = 0.5;
+            cx.beginPath();
+            cx.moveTo(margin, y);
+            cx.lineTo(W - margin, y);
+            cx.stroke();
+            y += 10;
+          } else if (line === line.toUpperCase() && line.trim().length > 5 && !line.includes('•') && !line.includes('→') && !line.includes('✦') && !line.includes('◆')) {
+            // Name header
+            cx.fillStyle = '#e5e5e5';
+            cx.font = 'bold 16px Inter, Helvetica, Arial, sans-serif';
+            cx.fillText(line, margin, y);
+            y += 22;
+          } else if (line.includes('✦') || line.includes('→') || line.includes('◆')) {
+            cx.fillStyle = '#aaa';
+            cx.font = '10px Inter, Helvetica, Arial, sans-serif';
+            // Word wrap long lines
+            const words = line.split(' ');
+            let current = '';
+            words.forEach(word => {
+              const test = current + word + ' ';
+              if (cx.measureText(test).width > maxW - 20) {
+                cx.fillText(current.trim(), margin + 10, y);
+                y += 14;
+                current = word + ' ';
+              } else {
+                current = test;
+              }
+            });
+            if (current.trim()) { cx.fillText(current.trim(), margin + 10, y); y += 14; }
+          } else if (line.trim()) {
+            cx.fillStyle = '#999';
+            cx.font = '10px Inter, Helvetica, Arial, sans-serif';
+            // Word wrap
+            const words = line.split(' ');
+            let current = '';
+            words.forEach(word => {
+              const test = current + word + ' ';
+              if (cx.measureText(test).width > maxW) {
+                cx.fillText(current.trim(), margin, y);
+                y += 14;
+                current = word + ' ';
+              } else {
+                current = test;
+              }
+            });
+            if (current.trim()) { cx.fillText(current.trim(), margin, y); y += 14; }
+          } else {
+            y += 8;
+          }
+        });
+
+        // Footer watermark
+        cx.fillStyle = '#333';
+        cx.font = '8px Inter, Helvetica, Arial, sans-serif';
+        cx.textAlign = 'center';
+        cx.fillText('Generated by AI Resume Builder — buildwithai.gdgjammu.com', W / 2, H - 20);
+        cx.textAlign = 'left';
+
+        // Convert to downloadable link
+        const dataUrl = c.toDataURL('image/png', 1.0);
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = `Abhinandan_Trilokia_Resume_${role.replace(/\s+/g, '_')}.png`;
+        a.click();
+      }
+
+      function showResult(role) {
+        lastRole = role;
+        stepInput.classList.add('hidden');
+        stepResult.classList.remove('hidden');
+        resultDiv.innerHTML = '<span class="ai-loading">Generating resume for ' + role + '...</span>';
+
+        // Simulate brief AI thinking delay
+        setTimeout(() => {
+          const resume = generateResume(role);
+          resultDiv.textContent = resume;
+        }, 1200);
+      }
+
+      function reset() {
+        stepInput.classList.remove('hidden');
+        stepResult.classList.add('hidden');
+        resultDiv.textContent = '';
+        input.value = '';
+        input.focus();
+      }
+
+      trigger.addEventListener('click', () => {
+        overlay.classList.add('show');
+        reset();
+        setTimeout(() => input.focus(), 100);
+      });
+
+      closeBtn.addEventListener('click', () => overlay.classList.remove('show'));
+      overlay.addEventListener('click', e => { if (e.target === overlay) overlay.classList.remove('show'); });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && overlay.classList.contains('show')) overlay.classList.remove('show');
+      });
+
+      genBtn.addEventListener('click', () => {
+        const role = input.value.trim();
+        if (!role) { input.style.borderColor = '#f00'; setTimeout(() => input.style.borderColor = '', 1500); return; }
+        showResult(role);
+      });
+
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') genBtn.click();
+      });
+
+      retryBtn.addEventListener('click', reset);
+
+      copyBtn.addEventListener('click', () => {
+        const text = resultDiv.textContent;
+        navigator.clipboard.writeText(text).then(() => {
+          copyBtn.innerHTML = '<span class="material-symbols-outlined text-sm">check</span> Copied!';
+          setTimeout(() => {
+            copyBtn.innerHTML = '<span class="material-symbols-outlined text-sm">content_copy</span> Copy';
+          }, 2000);
+        });
+      });
+
+      const handlePdfDownload = () => {
+        if (!lastRole) return;
+        generatePDF(lastRole);
+      };
+      pdfBtn.addEventListener('click', handlePdfDownload);
+      downloadBtn.addEventListener('click', handlePdfDownload);
+    })();
   </script>
 </body>
+
 </html>
